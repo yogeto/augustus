@@ -32,6 +32,8 @@ static const uint8_t NEW_GAME_KOREAN[] = {0xbb, 0xf5, 0x20, 0xb0, 0xd4, 0xc0, 0x
 static const uint8_t NEW_GAME_JAPANESE[] = {0x83, 0x6a, 0x83, 0x85, 0x81, 0x5b, 0x83, 0x51, 0x81, 0x5b, 0x83, 0x80, 0};
 static const uint8_t NEW_GAME_CZECH[] =
     {0x4e, 0x6f, 0x76, 0xe1, 0x20, 0x68, 0x72, 0x61, 0}; // Nova hra
+static const uint8_t NEW_GAME_BULGARIAN[] =
+    {0xcd, 0xee, 0xe2, 0xe0, 0x20, 0xe8, 0xe3, 0xf0, 0xe0, 0 }; // Nova hra
 
 static struct {
     language_type last_determined_language;
@@ -64,6 +66,8 @@ static language_type determine_language(void)
         return LANGUAGE_SWEDISH;
     } else if (string_equals(NEW_GAME_CZECH, new_game_string)) {
         return LANGUAGE_CZECH;
+    } else if (string_equals(NEW_GAME_BULGARIAN, new_game_string)) {
+        return LANGUAGE_BULGARIAN;
     } else if (string_equals(NEW_GAME_TRADITIONAL_CHINESE, new_game_string)) {
         return LANGUAGE_TRADITIONAL_CHINESE;
     } else if (string_equals(NEW_GAME_SIMPLIFIED_CHINESE, new_game_string)) {
@@ -96,6 +100,7 @@ static void log_language(void)
         case LANGUAGE_KOREAN: desc = "Korean"; break;
         case LANGUAGE_JAPANESE: desc = "Japanese"; break;
         case LANGUAGE_CZECH: desc = "Czech"; break;
+        case LANGUAGE_BULGARIAN: desc = "Bulgarian"; break;
         default: desc = "Unknown"; break;
     }
     log_info("Detected language:", desc, 0);
@@ -139,6 +144,7 @@ int locale_translate_rank_autosaves(void)
         case LANGUAGE_SWEDISH:
         case LANGUAGE_RUSSIAN:
         case LANGUAGE_CZECH:
+        case LANGUAGE_BULGARIAN:
             return 1;
 
         case LANGUAGE_JAPANESE:

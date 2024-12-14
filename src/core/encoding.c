@@ -868,7 +868,7 @@ encoding_type encoding_determine(language_type language)
     } else if (language == LANGUAGE_CZECH) {
         data.to_utf8_table = HIGH_TO_UTF8_CZECH;
         data.encoding= ENCODING_CZECH;
-    } else if (language == LANGUAGE_RUSSIAN) {
+    } else if ((language == LANGUAGE_RUSSIAN) || (language == LANGUAGE_BULGARIAN)) {
         data.to_utf8_table = HIGH_TO_UTF8_CYRILLIC;
         data.encoding = ENCODING_CYRILLIC;
     } else if (language == LANGUAGE_GREEK) {
